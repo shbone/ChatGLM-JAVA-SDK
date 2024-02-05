@@ -1,21 +1,25 @@
 package com.sunchatglm.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 /**
  * @author: SunHB
- * @createTime: 2024/02/03 上午9:30
- * @description: 模型响应体
- * 详见<p> https://open.bigmodel.cn/dev/api#glm-4 </p>
+ * @createTime: 2024/02/05 下午5:18
+ * @description:
  */
-@Data
 @Builder
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
 @AllArgsConstructor
-public class GLMResponseBody {
+public class ChatResponseStreamBody {
     /**
      * 任务Id
      */
@@ -41,9 +45,10 @@ public class GLMResponseBody {
      * 结束时返回本次模型调用的 tokens 数量统计
      */
     @JsonProperty("usage")
-    private TokenStatic usage;
+    private ChatResponseSyncBody.TokenStatic usage;
+
     @Data
-    public static class Choice {
+    public static class Choice{
         /**
          * 结果下标
          */
@@ -62,8 +67,8 @@ public class GLMResponseBody {
          *
          * 模型返回的文本信息
          */
-        @JsonProperty("message")
-        private Message message;
+        @JsonProperty("delta")
+        private Delta delta;
     }
     @Data
     public static class TokenStatic{
@@ -84,5 +89,11 @@ public class GLMResponseBody {
         @JsonProperty("total_tokens")
         private Integer totalTokens;
     }
-
+    @Data
+    public static class Delta {
+        @JsonProperty("role")
+        private String role;
+        @JsonProperty("content")
+        private String content;
+    }
 }
