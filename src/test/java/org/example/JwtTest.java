@@ -11,7 +11,7 @@ import com.sunchatglm.util.JWTService;
 public class JwtTest {
     @Test
     public void testJwtGenerate(){
-        String apiKey = "188107572495261cb3a30f93ad6e96c9.Kz6CVNsHaXjKqwxX";
+        String apiKey = "YOUR_API_KEY";
         String jwt = JWTService.generateJWT(apiKey);
         System.out.println(jwt);
     }

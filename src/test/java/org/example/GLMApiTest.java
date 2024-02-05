@@ -12,17 +12,25 @@ import com.sunchatglm.model.GLM;
  */
 public class GLMApiTest {
     private Logger logger = LoggerFactory.getLogger(GLMApiTest.class);
+
+    /**
+     * 问答，同步调用
+     */
     @Test
     public void testGLMApi(){
-        String apikey = "188107572495261cb3a30f93ad6e96c9.Kz6CVNsHaXjKqwxX";
+        String apikey = "YOUR_API_KEY";
         GLM glm = new GLM(apikey);
-        String answer = glm.ask("glm-4", "你好");
+        String answer = glm.ask("glm-4", "你的中文怎么样");
         logger.info("answer:" + answer);
     }
+
+    /**
+     * 问答，SSE调用
+     */
     @Test
     public void testGLMSSEApi(){
-        String apikey = "188107572495261cb3a30f93ad6e96c9.Kz6CVNsHaXjKqwxX";
+        String apikey = "YOUR_API_KEY";
         GLM glm = new GLM(apikey);
-        String answer = glm.askSSE("glm-4", "华中科技大学涂刚是谁？");
+        String answer = glm.askSSE("glm-4", "华中科技大学在哪个城市");
     }
 }
